@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="1. Qual é o nome da vassoura que Harry Potter recebeu como presente de Natal em seu primeiro ano em Hogwarts?"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewQuestion">
+
+            <RadioButton
+                android:id="@+id/radioButtonQ1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nimbus 2001" />
+
+            <RadioButton
+                android:id="@+id/radioButtonQ2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Firebolt" />
+
+            <RadioButton
+                android:id="@+id/radioButtonQ3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cleansweep One" />
+
+            <RadioButton
+                android:id="@+id/radioButtonQ4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comet Two Sixty" />
+
+            <RadioButton
+                android:id="@+id/radioButtonQ5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shooting Star" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/buttonPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/purple_700"
+            android:text="Anterior"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toStartOf="@+id/buttonNext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/teal_700"
+            android:text="Próxima"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonPrevious"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
