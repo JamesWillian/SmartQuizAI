@@ -10,17 +10,26 @@ class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewM
 
     private var index = 0
 
-    fun pickAnswer(answerIndex: Int) {
+    fun nextQuestion(answerIndex: Int) {
         if (index < 9) {
-            refreshQuizQuestionList()
+            refreshQuizQuestionList(answerIndex)
         }
     }
 
-    private fun refreshQuizQuestionList() {
+    private fun refreshQuizQuestionList(pickedAnswer: Int) {
         liveUiState.value?.let { currentUiState ->
-            liveUiState.value = currentUiState.copy(
 
-                index = index++
+            val updatedQuizQuestionsList = currentUiState.quizQuestionsList.mapIndexed { index, quizQuestion ->
+                if (index == currentUiState.index) {
+                    quizQuestion.copy(pickedAnswer = pickedAnswer)
+                } else {
+                    quizQuestion
+                }
+            }
+
+            liveUiState.value = currentUiState.copy(
+                quizQuestionsList = updatedQuizQuestionsList,
+                index = ++index
             )
         }
     }
