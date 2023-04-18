@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.jammes.smartquizai.databinding.FragmentQuizQuestionsBinding
 import com.jammes.smartquizai.dummy.MockQuestions
 
@@ -40,7 +41,12 @@ class QuizQuestionsFragment: Fragment() {
             val group = binding.radioGroup
             val index = group.indexOfChild(group.findViewById<RadioButton>(group.checkedRadioButtonId))
 
-            viewModel.nextQuestion(index)
+            if (viewModel.stateUiStateAsLiveData().value!!.index < 9) {
+                viewModel.nextQuestion(index)
+            } else {
+                findNavController().navigate(R.id.action_quizQuestionsFragment_to_quizResultFragment)
+            }
+
         }
     }
 
@@ -57,4 +63,8 @@ class QuizQuestionsFragment: Fragment() {
         binding.radioGroup.clearCheck()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

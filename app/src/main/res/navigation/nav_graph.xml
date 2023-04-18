@@ -8,5 +8,14 @@
         android:id="@+id/quizQuestionsFragment"
         android:name="com.jammes.smartquizai.QuizQuestionsFragment"
         android:label="QuizQuestionsFragment"
-        tools:layout="@layout/fragment_quiz_questions"/>
+        tools:layout="@layout/fragment_quiz_questions">
+        <action
+            android:id="@+id/action_quizQuestionsFragment_to_quizResultFragment"
+            app:destination="@id/quizResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizResultFragment"
+        android:name="com.jammes.smartquizai.QuizResultFragment"
+        android:label="QuizResultFragment"
+        tools:layout="@layout/fragment_quiz_result"/>
 </navigation>
