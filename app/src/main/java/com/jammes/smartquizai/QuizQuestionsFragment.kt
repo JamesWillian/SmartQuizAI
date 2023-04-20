@@ -37,30 +37,36 @@ class QuizQuestionsFragment: Fragment() {
                 bindUiState(uiState)
             }
 
-        binding.buttonNext.setOnClickListener {
+        binding.radioGroup.setOnCheckedChangeListener { _, i ->
+
             val group = binding.radioGroup
-            val index = group.indexOfChild(group.findViewById<RadioButton>(group.checkedRadioButtonId))
+            val index = group.indexOfChild(group.findViewById<RadioButton>(i))
 
-            if (viewModel.stateUiStateAsLiveData().value!!.index < 9) {
+            if (index != -1) {
                 viewModel.nextQuestion(index)
-            } else {
-                findNavController().navigate(R.id.action_quizQuestionsFragment_to_quizResultFragment)
             }
-
         }
+
     }
 
     private fun bindUiState(uiState: QuizQuestionsViewModel.UiState) {
-        val newQuestion = uiState.quizQuestionsList[uiState.index]
 
-        binding.textViewQuestion.text = newQuestion.question
-        binding.radioButtonQ1.text = newQuestion.answers[0]
-        binding.radioButtonQ2.text = newQuestion.answers[1]
-        binding.radioButtonQ3.text = newQuestion.answers[2]
-        binding.radioButtonQ4.text = newQuestion.answers[3]
-        binding.radioButtonQ5.text = newQuestion.answers[4]
+        //Se for a ultima pergunta, chama a tela do resultado
+        if (viewModel.stateUiStateAsLiveData().value!!.index == 10) {
+            findNavController().navigate(R.id.action_quizQuestionsFragment_to_quizResultFragment)
+        } else {
 
-        binding.radioGroup.clearCheck()
+            val newQuestion = uiState.quizQuestionsList[uiState.index]
+
+            binding.textViewQuestion.text = "${uiState.index+1}. ${newQuestion.question}"
+            binding.radioButtonQ1.text = newQuestion.answers[0]
+            binding.radioButtonQ2.text = newQuestion.answers[1]
+            binding.radioButtonQ3.text = newQuestion.answers[2]
+            binding.radioButtonQ4.text = newQuestion.answers[3]
+            binding.radioButtonQ5.text = newQuestion.answers[4]
+
+            binding.radioGroup.clearCheck()
+        }
     }
 
     override fun onDestroyView() {

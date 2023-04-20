@@ -9,11 +9,10 @@ import com.jammes.smartquizai.core.QuestionsRepository
 class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewModel() {
 
     private var index = 0
+    var correctAnswers = 0
 
     fun nextQuestion(answerIndex: Int) {
-        if (index < 9) {
-            refreshQuizQuestionList(answerIndex)
-        }
+        refreshQuizQuestionList(answerIndex)
     }
 
     private fun refreshQuizQuestionList(pickedAnswer: Int) {
@@ -27,10 +26,16 @@ class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewM
                 }
             }
 
+            if (updatedQuizQuestionsList[currentUiState.index].correctAnswer ==
+                updatedQuizQuestionsList[currentUiState.index].pickedAnswer) {
+                correctAnswers = ++correctAnswers
+            }
+
             liveUiState.value = currentUiState.copy(
                 quizQuestionsList = updatedQuizQuestionsList,
                 index = ++index
             )
+
         }
     }
 

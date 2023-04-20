@@ -24,13 +24,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Você acertou:"
+                android:text="@string/correct_questions"
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/correctAnswersTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="8 de 10"
+                android:text="@string/count_correct_questions"
                 android:textSize="22sp" />
 
         </LinearLayout>

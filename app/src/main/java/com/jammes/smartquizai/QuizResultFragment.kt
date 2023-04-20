@@ -38,6 +38,8 @@ class QuizResultFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.resultRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.resultRecyclerView.adapter = adapter
+
+        binding.correctAnswersTextView.text = "${viewModel.correctAnswers} de 10"
     }
 
     override fun onDestroyView() {
