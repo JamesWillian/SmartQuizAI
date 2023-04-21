@@ -11,6 +11,12 @@ class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewM
     private var index = 0
     var correctAnswers = 0
 
+    fun clearQuizUiState() {
+        index = 0
+        correctAnswers = 0
+        liveUiState.value = liveUiState.value?.copy(index = 0)
+    }
+
     fun nextQuestion(answerIndex: Int) {
         refreshQuizQuestionList(answerIndex)
     }

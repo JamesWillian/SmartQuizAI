@@ -3,7 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/quizQuestionsFragment">
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jammes.smartquizai.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_quizQuestionsFragment"
+            app:destination="@id/quizQuestionsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/quizQuestionsFragment"
         android:name="com.jammes.smartquizai.QuizQuestionsFragment"
@@ -11,11 +21,13 @@
         tools:layout="@layout/fragment_quiz_questions">
         <action
             android:id="@+id/action_quizQuestionsFragment_to_quizResultFragment"
-            app:destination="@id/quizResultFragment" />
+            app:destination="@id/quizResultFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/quizResultFragment"
         android:name="com.jammes.smartquizai.QuizResultFragment"
         android:label="QuizResultFragment"
         tools:layout="@layout/fragment_quiz_result"/>
+
 </navigation>

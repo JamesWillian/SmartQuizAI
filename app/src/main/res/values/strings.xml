@@ -5,4 +5,6 @@
     <string name="hint_correct_answer">resposta correta</string>
     <string name="correct_questions">Você acertou:</string>
     <string name="count_correct_questions">8 de 10</string>
+    <string name="start_quiz">Começar</string>
+    <string name="quiz_harry_potter">Quiz Harry Potter</string>
 </resources>
