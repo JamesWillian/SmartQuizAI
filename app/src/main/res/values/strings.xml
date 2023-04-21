@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">SmartQuizAI</string>
     <string name="hint_question">Pergunta</string>
-    <string name="hint_answer">resposta</string>
+    <string name="hint_picked_answer">respondeu</string>
+    <string name="hint_correct_answer">resposta correta</string>
     <string name="correct_questions">Você acertou:</string>
     <string name="count_correct_questions">8 de 10</string>
 </resources>

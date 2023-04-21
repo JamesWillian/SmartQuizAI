@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:orientation="vertical"
-    android:background="@color/teal_700">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/question_text_view"
@@ -15,10 +15,18 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/result_text_view"
+        android:id="@+id/pickedAnswerTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:hint="@string/hint_answer" />
+        android:hint="@string/hint_picked_answer" />
+
+    <TextView
+        android:id="@+id/correctAnswerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/hint_correct_answer"
+        android:visibility="gone" />
 
 </LinearLayout>

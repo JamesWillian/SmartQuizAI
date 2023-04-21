@@ -1,6 +1,7 @@
 package com.jammes.smartquizai
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -15,14 +16,20 @@ class QuizResultAdapter(
     ): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(question: QuizQuestions) {
-            binding.questionTextView.text = question.question
-            binding.resultTextView.text = question.explanation
+            val pickedAnswer = binding.pickedAnswerTextView
+            val correctAnswer = binding.correctAnswerTextView
 
-            binding.root.setBackgroundColor(if (question.correctAnswer == question.pickedAnswer) {
-                ContextCompat.getColor(binding.root.context, R.color.teal_200)
+            binding.questionTextView.text = question.question
+            pickedAnswer.text = question.answers[question.pickedAnswer!!]
+            correctAnswer.text = question.explanation
+
+            if (question.correctAnswer == question.pickedAnswer) {
+                pickedAnswer.setTextColor(ContextCompat.getColor(binding.root.context, R.color.dartmouth_green))
+                correctAnswer.visibility = View.GONE
             } else {
-                ContextCompat.getColor(binding.root.context, R.color.purple_200)
-            })
+                pickedAnswer.setTextColor(ContextCompat.getColor(binding.root.context, R.color.falu_red))
+                correctAnswer.visibility = View.VISIBLE
+            }
         }
     }
 
