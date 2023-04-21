@@ -39,4 +39,9 @@ class HomeFragment: Fragment() {
         super.onResume()
         viewModel.clearQuizUiState()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
