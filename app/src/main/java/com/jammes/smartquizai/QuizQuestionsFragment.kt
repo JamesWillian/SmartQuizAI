@@ -54,7 +54,7 @@ class QuizQuestionsFragment: Fragment() {
         val index = viewModel.currentQuizList.lastIndex
 
         //Se for a ultima pergunta, chama a tela do resultado
-        if (index == 9) {
+        if (index == 10) {
             findNavController().navigate(R.id.action_quizQuestionsFragment_to_quizResultFragment)
         } else {
 
