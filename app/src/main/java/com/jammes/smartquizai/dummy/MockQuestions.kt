@@ -119,4 +119,6 @@ object MockQuestions: QuestionsRepository {
 
     override fun getRandomQuestions() = questionList.shuffled().take(10)
 
+    override fun getSingleQuestion(): Questions = questionList.random()
+
 }

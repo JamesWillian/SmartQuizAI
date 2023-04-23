@@ -6,4 +6,6 @@ interface QuestionsRepository {
 
     fun getRandomQuestions(): List<Questions>
 
+    fun getSingleQuestion(): Questions
+
 }

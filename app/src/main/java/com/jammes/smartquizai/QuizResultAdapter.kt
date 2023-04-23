@@ -38,11 +38,10 @@ class QuizResultAdapter(
         return QuizResultViewHolder(binding)
     }
 
-    override fun getItemCount() =
-        viewModel.stateUiStateAsLiveData().value!!.index
+    override fun getItemCount() = viewModel.currentQuizList.lastIndex
 
     override fun onBindViewHolder(holder: QuizResultViewHolder, position: Int) {
-        holder.bind(viewModel.stateUiStateAsLiveData().value!!.quizQuestionsList[position])
+        holder.bind(viewModel.currentQuizList[position])
 
     }
 }

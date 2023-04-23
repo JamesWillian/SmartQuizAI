@@ -8,38 +8,45 @@ import com.jammes.smartquizai.core.QuestionsRepository
 
 class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewModel() {
 
-    private var index = 0
     var correctAnswers = 0
+    val currentQuizList = mutableListOf<QuizQuestions>()
 
     fun clearQuizUiState() {
-        index = 0
         correctAnswers = 0
-        liveUiState.value = liveUiState.value?.copy(index = 0)
+        currentQuizList.clear()
     }
 
     fun nextQuestion(answerIndex: Int) {
         refreshQuizQuestionList(answerIndex)
     }
 
+    private fun newQuestion(): QuizQuestions {
+        val newQuestion = repository.getSingleQuestion()
+
+        currentQuizList.add(
+            QuizQuestions(
+                question = newQuestion.question,
+                answers = newQuestion.answers,
+                correctAnswer = newQuestion.correctAnswer,
+                explanation = newQuestion.explanation
+            )
+        )
+
+        return currentQuizList[currentQuizList.lastIndex]
+    }
+
     private fun refreshQuizQuestionList(pickedAnswer: Int) {
         liveUiState.value?.let { currentUiState ->
+//            currentQuizList[currentQuizList.lastIndex].pickedAnswer = pickedAnswer
 
-            val updatedQuizQuestionsList = currentUiState.quizQuestionsList.mapIndexed { index, quizQuestion ->
-                if (index == currentUiState.index) {
-                    quizQuestion.copy(pickedAnswer = pickedAnswer)
-                } else {
-                    quizQuestion
-                }
-            }
-
-            if (updatedQuizQuestionsList[currentUiState.index].correctAnswer ==
-                updatedQuizQuestionsList[currentUiState.index].pickedAnswer) {
+            //Incrementa a quantidade de respostas corretas
+            if (currentQuizList[currentQuizList.lastIndex].correctAnswer == currentQuizList[currentQuizList.lastIndex].pickedAnswer) {
                 correctAnswers = ++correctAnswers
             }
 
+            //Atualiza a UiState com uma nova pergunta aleatoria
             liveUiState.value = currentUiState.copy(
-                quizQuestionsList = updatedQuizQuestionsList,
-                index = ++index
+                currentQuestion = newQuestion()
             )
 
         }
@@ -52,20 +59,13 @@ class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewM
     private val liveUiState: MutableLiveData<UiState> by lazy {
         MutableLiveData<UiState>(
             UiState(
-                quizQuestionsList = repository.getRandomQuestions().map { question ->
-                    QuizQuestions(
-                        question = question.question,
-                        answers = question.answers,
-                        correctAnswer = question.correctAnswer,
-                        explanation = question.explanation) },
-                index = index
+                currentQuestion = newQuestion()
             )
         )
     }
 
     data class UiState(
-        val quizQuestionsList: List<QuizQuestions>,
-        val index: Int
+        val currentQuestion: QuizQuestions
     )
 
     @Suppress("UNCHECKED_CAST")

@@ -51,14 +51,16 @@ class QuizQuestionsFragment: Fragment() {
 
     private fun bindUiState(uiState: QuizQuestionsViewModel.UiState) {
 
+        val index = viewModel.currentQuizList.lastIndex
+
         //Se for a ultima pergunta, chama a tela do resultado
-        if (viewModel.stateUiStateAsLiveData().value!!.index == 10) {
+        if (index == 9) {
             findNavController().navigate(R.id.action_quizQuestionsFragment_to_quizResultFragment)
         } else {
 
-            val newQuestion = uiState.quizQuestionsList[uiState.index]
+            val newQuestion = uiState.currentQuestion
 
-            binding.textViewQuestion.text = "${uiState.index+1}. ${newQuestion.question}"
+            binding.textViewQuestion.text = "${index+1}. ${newQuestion.question}"
             binding.radioButtonQ1.text = newQuestion.answers[0]
             binding.radioButtonQ2.text = newQuestion.answers[1]
             binding.radioButtonQ3.text = newQuestion.answers[2]

@@ -39,7 +39,7 @@ class QuizResultFragment: Fragment() {
         binding.resultRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.resultRecyclerView.adapter = adapter
 
-        binding.countAnswersTextView.text = "${viewModel.correctAnswers} de 10"
+        binding.countAnswersTextView.text = "${viewModel.correctAnswers} de ${viewModel.currentQuizList.lastIndex+1}"
     }
 
     override fun onDestroyView() {
