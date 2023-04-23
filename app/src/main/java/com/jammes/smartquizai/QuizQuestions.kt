@@ -7,6 +7,6 @@ data class QuizQuestions(
     val question: String,
     val answers: List<String>,
     val correctAnswer: Int,
-    val pickedAnswer: Int? = null,
+    var pickedAnswer: Int? = null,
     val explanation: String
 )

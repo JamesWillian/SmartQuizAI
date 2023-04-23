@@ -37,7 +37,7 @@ class QuizQuestionsViewModel(private val repository: QuestionsRepository): ViewM
 
     private fun refreshQuizQuestionList(pickedAnswer: Int) {
         liveUiState.value?.let { currentUiState ->
-//            currentQuizList[currentQuizList.lastIndex].pickedAnswer = pickedAnswer
+            currentQuizList[currentQuizList.lastIndex].pickedAnswer = pickedAnswer
 
             //Incrementa a quantidade de respostas corretas
             if (currentQuizList[currentQuizList.lastIndex].correctAnswer == currentQuizList[currentQuizList.lastIndex].pickedAnswer) {
