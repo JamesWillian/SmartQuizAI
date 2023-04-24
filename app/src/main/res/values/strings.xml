@@ -7,4 +7,5 @@
     <string name="count_correct_questions">8 de 10</string>
     <string name="start_quiz">Começar</string>
     <string name="quiz_harry_potter">Quiz Harry Potter</string>
+    <string name="quiz_dificult">Nível: Intermediário</string>
 </resources>

@@ -5,7 +5,7 @@ import com.jammes.smartquizai.core.QuestionsRepository
 
 object MockQuestions: QuestionsRepository {
 
-    val questionList = listOf(
+    private val questionList = listOf(
         Questions(
             "Qual é o nome completo de Rony Weasley?",
             listOf("Ronald Bilius Weasley",
